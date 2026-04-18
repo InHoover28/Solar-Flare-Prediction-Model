@@ -43,3 +43,47 @@ TECH STACK
 -numpy
 -scikit-learn
 -matplotlib
+
+PROJECT STRUCTURE
+
+solar-flare-predictor/ 
+│ 
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── notebooks/
+│   └── exploration.ipynb 
+│ 
+├── src/ 
+│   ├── data_loader.py 
+│   ├── preprocessing.py
+│   ├── feature_engineering.py
+│   ├── model.py 
+│   ├── evaluate.py
+│   
+├── main.py
+├── requirements.txt 
+└── README.md
+
+HOW TO RUN 
+
+pip install -r requirements.txt
+python main.py
+
+WHY THIS PROJECT MATTERS
+
+Solar flare prediction plays a critical role in protecting:
+-Satellites and spacecraft
+-Communication systems
+-Power grids on Earth
+This project demonstrates how machine learning can be applied to real aerospace and space weather problems using publically available data.
+
+FUTURE IMPROVEMENTS
+-Implement deep learning models (LSTM for time-series prediction)
+-Incorporate additional space weather variables
+-Improve handling of imbalanced data (rare flare events)
+-Deploy as an interactive dashboard of API
+
+AUTHOR
+Computer Science student with a focus on Data Science and AI, interested in Aerospace applications and real-world machine learning systems.
