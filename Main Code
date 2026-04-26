@@ -1,0 +1,105 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+
+# =========================================================
+# INSERT PARSED DATA HERE
+# =========================================================
+
+data = [
+    # ["flare_id", "start_time", duration, peak_counts, total_counts]
+
+    WILL BE ADDING PARSED DATA HERE SOON
+PARSING 14000 ROWS BY HAND
+]
+
+# =========================================================
+# CREATE DATAFRAME
+# =========================================================
+
+df = pd.DataFrame(data, columns=[
+    "flare_id",
+    "start_time",
+    "duration",
+    "peak_counts",
+    "total_counts"
+])
+
+# =========================================================
+# PREPROCESSING
+# =========================================================
+
+df["start_time"] = pd.to_datetime(df["start_time"], errors="coerce")
+df = df.dropna()
+df = df.sort_values("start_time")
+
+# =========================================================
+# VISUALIZATION 
+# =========================================================
+
+plt.figure()
+plt.hist(df["peak_counts"], bins=50)
+plt.title("Distribution of Solar Flare Peak Counts")
+plt.xlabel("Peak Counts")
+plt.ylabel("Frequency")
+plt.show()
+
+# =========================================================
+# FEATURE ENGINEERING
+# =========================================================
+
+# Time-based features
+df["hour"] = df["start_time"].dt.hour
+df["day"] = df["start_time"].dt.day
+df["month"] = df["start_time"].dt.month
+
+# Rolling features
+df["rolling_peak_mean"] = df["peak_counts"].rolling(window=3).mean()
+df["rolling_duration_mean"] = df["duration"].rolling(window=3).mean()
+
+# FIXED THRESHOLD 
+threshold = 3000  # adjust after looking at your histogram
+df["strong_flare"] = (df["peak_counts"] > threshold).astype(int)
+
+# Drop NaN rows from rolling calculations
+df = df.dropna()
+
+print("Processed data shape:", df.shape)
+
+# =========================================================
+# MODEL TRAINING
+# =========================================================
+
+features = [
+    "duration",
+    "rolling_peak_mean",
+    "rolling_duration_mean",
+    "hour",
+    "day",
+    "month"
+]
+
+X = df[features]
+y = df["strong_flare"]
+
+# Time-aware split
+split_index = int(len(df) * 0.8)
+
+X_train = X.iloc[:split_index]
+X_test = X.iloc[split_index:]
+
+y_train = y.iloc[:split_index]
+y_test = y.iloc[split_index:]
+
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+
+# =========================================================
+# EVALUATION
+# =========================================================
+
+predictions = model.predict(X_test)
+
+print("\nModel Evaluation:\n")
+print(classification_report(y_test, predictions))
