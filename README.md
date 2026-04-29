@@ -69,8 +69,6 @@ Rather than a hardcoded threshold, flares are labelled **strong** if their peak 
 
 ## Results
 
-> *Run the model to populate this section with your actual output.*
-
 - **Model accuracy:** 90.6%
 - **Strong flare F1-score:** 17.4%
 - **Top predictive feature:** `rolling_peak_mean` (past flare intensity is the strongest signal)
