@@ -71,8 +71,8 @@ Rather than a hardcoded threshold, flares are labelled **strong** if their peak 
 
 > *Run the model to populate this section with your actual output.*
 
-- **Model accuracy:** XX%
-- **Strong flare F1-score:** XX%
+- **Model accuracy:** 90.6%
+- **Strong flare F1-score:** 17.4%
 - **Top predictive feature:** `rolling_peak_mean` (past flare intensity is the strongest signal)
 - **Key observation:** Class balancing significantly improves recall on rare strong flares compared to an unweighted model
 
@@ -85,9 +85,6 @@ The project includes a full **Streamlit dashboard** (`app.py`) with:
 - Adjustable threshold percentile, rolling window, tree count, and train/test split
 - Live charts: distribution, class balance, confusion matrix, feature importance
 - **Single-flare predictor** — enter pre-peak observations and get an instant strong/weak prediction with confidence score
-
-![Dashboard screenshot](assets/dashboard_screenshot.png)
-> *Replace with an actual screenshot*
 
 ---
 
