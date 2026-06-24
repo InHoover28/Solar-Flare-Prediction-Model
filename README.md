@@ -1,6 +1,6 @@
 # ☀️ Solar Flare Strength Predictor
 
-> A machine learning pipeline that predicts whether an incoming solar flare will be **strong or weak** based on historical space weather patterns — built with real NASA/RHESSI observational data spanning 2008–2026.
+> A machine learning pipeline that classifies solar flares based on strength and predicts whether an incoming solar flare will be **strong or weak** based on historical space weather patterns — built with real NASA/RHESSI observational data spanning 2008–2026.
 
 ---
 
@@ -51,7 +51,7 @@ All features are constructed from **past flares only** — no data from the curr
 | `rolling_strong_rate` | Proportion of the last N flares that were strong |
 
 ### 3. Labelling
-Rather than a hardcoded threshold, flares are labelled **strong** if their peak count exceeds the **75th percentile** of the full dataset — making the threshold data-driven and adjustable.
+Rather than a hardcoded threshold, flares are labelled **strong** if their peak count exceeds the **90th percentile** of the full dataset — making the threshold data-driven and adjustable.
 
 ### 4. Model
 - **Algorithm:** Random Forest (200 trees, max depth 12)
