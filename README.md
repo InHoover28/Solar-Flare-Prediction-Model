@@ -1,4 +1,4 @@
-# ☀️ Solar Flare Strength Predictor
+# ☀️ Solar Flare Strength Classifier & Predictor
 
 > A machine learning pipeline that classifies solar flares based on strength and predicts whether an incoming solar flare will be **strong or weak** based on historical space weather patterns — built with real NASA/RHESSI observational data spanning 2008–2026.
 
